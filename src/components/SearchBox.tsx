@@ -2,7 +2,11 @@ import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import React, { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 
-const SearchBox = () => {
+interface Props {
+    onSearch: (searchText: string) => void;
+}
+
+const SearchBox = ({ onSearch }: Props) => {
     const ref = useRef<HTMLInputElement>(null);
 
     return (
@@ -10,7 +14,7 @@ const SearchBox = () => {
             style={{ width: "100%" }}
             onSubmit={(event) => {
                 event.preventDefault();
-                if (ref.current) console.log(ref.current.value);
+                if (ref.current) onSearch(ref.current.value);
             }}
         >
             <InputGroup>
